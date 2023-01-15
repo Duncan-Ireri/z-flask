@@ -1,0 +1,85 @@
+{% block doc -%}
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="{{ config["FOUNDATION_LANG"] }}" > <![endif]-->
+<html class="no-js"{% block html_attribs %} lang="{{ config["FOUNDATION_LANG"] }}" dir="{{ config["FOUNDATION_TEXT_DIRECTION"] }}"{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}{{title}}{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta charset="utf-8">
+      <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+    {%- block styles %}
+      <!-- Foundation -->
+       <link rel="stylesheet" href="{{ url_for('foundation.static', filename='css/normalize.css') }}">
+      {% if config["FOUNDATION_MINIFIED"] %}
+      <link rel="stylesheet" href="{{ url_for('foundation.static', filename='css/foundation.min.css') }}">
+      {% else %}
+      <link rel="stylesheet" href="{{ url_for('foundation.static', filename='css/foundation.css') }}">
+      {% endif %}
+      {% if config['FOUNDATION_ICONS']%}
+      <link rel="stylesheet" href="{{ url_for('foundation.static', filename='css/foundation-icons.css') }}">
+      {% endif  %}
+    {%- endblock styles %}
+
+    {% block head_scripts %}
+      {% if config['FOUNDATION_CDN'] %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+      {% else %}
+        <script src="{{url_for('foundation.static', filename='js/vendor/modernizr.js')}}"></script>
+      {% endif %}
+    {% endblock head_scripts%}
+
+    {%- endblock head %}
+
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    
+    {% block navbar -%}
+        
+
+        
+    {%- endblock navbar %}
+    {% block content -%}
+
+    
+    {%- endblock content %}
+   
+      
+
+{% block footer -%}
+{%- endblock footer%}
+
+      {% block footer_scripts %}
+        {% if config['FOUNDATION_CDN'] %}
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.{% if config['FOUNDATION_MINIFIED'] %}min.{% endif %}js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.js" integrity="sha512-RgLFL8g2bsqb5KNaLbsJ2D+4/gVUieeMkuq0DRFQFUTe3o4kYREQoA40xNukkVon4lCVhQqK493eXIlZ7mfvPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        {% else %}
+
+          <script src="{{url_for('foundation.static', filename='js/vendor/jquery.js')}}"></script>
+          <script src="{{url_for('foundation.static', filename='js/vendor/what-input.js')}}"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.5/js/plugins/foundation.accordion.min.js" integrity="sha512-HOD1vQpkS4ZEuMk2fQPluN15y4XrD4a5nPHOkgoaac+boUiOZ3crX4MbzHg4isaeBzd8ejhzXE1gwWqAEm8GFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {% endif %}
+        {% if config['FOUNDATION_CDN'] %}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.5/js/foundation.min.js" integrity="sha512-xpawU2EKh0HLTLWu8khGczejw+OaWWr+JBcbFBWtRUIkkhuMRZZeEFxY0n51aeC9YF4jxOMzd0pTR9m0tiSvsQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js" integrity="sha512-jdMp80Gf2e7K/JH3+mucRwyeRaqRPD+ykSpkmbBqxWMMCfEZEL9PF0zzF3JEgV4IVNj6eTjV8X41e7Gz5nNwyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          {% elif config['FOUNDATION_MINIFIED'] %}
+          <script src="{{ url_for('foundation.static', filename='js/vendor/foundation.min.js') }}"></script>
+        {% else %}
+          <script src="{{ url_for('foundation.static', filename='js/vendor/foundation.js') }}"></script>
+
+        {% endif %}
+
+        <script>
+          $(document).foundation();
+        </script>
+      {%- endblock footer_scripts %}
+{%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
